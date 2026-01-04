@@ -70,6 +70,9 @@ function loadQuestion() {
    ✅ เช็กคำตอบ
 ====================== */
 function checkAnswer(index) {
+  const buttons = document.querySelectorAll("#choices button");
+  buttons.forEach(btn => btn.disabled = true);
+
   if (index === questions[current].answer) {
     resultEl.innerHTML = "ถูกต้อง 💖";
     navigator.vibrate(200);
@@ -86,6 +89,7 @@ function checkAnswer(index) {
   } else {
     resultEl.innerHTML = "ยังไม่ใช่น้า 😝";
     navigator.vibrate([100, 50, 100]);
+    buttons.forEach(btn => btn.disabled = false);
   }
 }
 
@@ -134,4 +138,5 @@ function share() {
   } else {
     alert("คัดลอกลิงก์นี้ไปส่งให้แฟนได้เลย 💌\n" + url);
   }
+
 }
